@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-    DOCKER_USERNAME: eduardo-latorre
+    DOCKER_USERNAME: eduardolatorre
     DOCKER_IMAGE_NAME: hello-app
 jobs:
   build:
