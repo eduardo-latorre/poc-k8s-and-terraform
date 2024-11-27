@@ -20,16 +20,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
     
       - name: Set image version
-        run: echo "IMAGE_VERSION=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
-
-      - name: Output image details
         run: |
-          echo "The new image version to be pushed"
-          echo "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_VERSION"
+          echo "image_version=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+        id: set_image_version
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: echo "${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_VERSION"
+      - name: Print image version
+        run: |
+          echo The image version is: ${{ steps.set_image_version.outputs.image_version }}
