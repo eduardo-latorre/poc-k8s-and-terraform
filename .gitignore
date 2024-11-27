@@ -1,1 +1,4 @@
+# Local scripts
 local/
+# Go binary
+app
